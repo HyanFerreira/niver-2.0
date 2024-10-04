@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const newDayDate = new Date(newDay);
     const alertEn = document.getElementById('alert-en');
 
-    if (currentDate.toDateString() === newDayDate.toDateString()) {
+    // currentDate.toDateString() === newDayDate.toDateString()
+
+    if (0 === 0) {
       transitioningEnvelope();
       alertEn.innerHTML = '';
     } else {

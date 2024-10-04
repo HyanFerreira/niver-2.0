@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const newDay = '5 Oct 2024';
   const envelope = document.querySelector('.envelope-wrapper');
+  const main = document.querySelector('.main');
+  const contentMain = document.querySelector('.content-main');
+  const contentMainP = document.querySelector('.content-main p');
 
   let clickCount = 0;
 
@@ -30,13 +33,27 @@ document.addEventListener('DOMContentLoaded', function() {
     return time < 10 ? `0${time}` : time;
   }
 
+  function transitioningEnvelope() {
+    envelope.classList.toggle('flap');
+    setTimeout(() => {
+      envelope.style.opacity = '0';
+      main.classList.add('active');
+    }, 1500);
+    setTimeout(() => {
+      contentMain.classList.add('active');
+    }, 2200);
+    setTimeout(() => {
+      contentMainP.classList.add('active');
+    }, 2400);
+  }
+
   envelope.addEventListener('click', () => {
     const currentDate = new Date();
     const newDayDate = new Date(newDay);
     const alertEn = document.getElementById('alert-en');
 
     if (currentDate.toDateString() === newDayDate.toDateString()) {
-      envelope.classList.toggle('flap');
+      transitioningEnvelope();
       alertEn.innerHTML = '';
     } else {
       clickCount++;
@@ -47,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (clickCount === 3) {
         alertEn.innerHTML = 'Tá díficil em grilo...';
       } else if (clickCount === 4) {
-        alertEn.innerHTML = 'O ansiedade do carai em, dar pra mim que é bom nada...';
+        alertEn.innerHTML =
+          'O ansiedade do carai em, dar pra mim que é bom nada...';
       } else {
         alertEn.innerHTML = 'Desisto...';
       }

@@ -42,6 +42,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 25px;
 }
 
 .countdown-el {
@@ -53,6 +54,24 @@ p {
     font-size: 3rem;
     line-height: 1;
     margin: 1rem;
+}
+
+.text.active {
+    animation: timerZero 2s infinite;
+}
+
+@keyframes timerZero {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* envelope */
@@ -229,7 +248,7 @@ p {
 
 .content-main {
     display: none;
-    padding: 30px;
+    padding: 40px 30px 30px 30px;
     transition: 900ms;
     opacity: 0;
 }

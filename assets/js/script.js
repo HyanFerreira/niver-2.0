@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const minsEl = document.getElementById('mins');
   const secondsEl = document.getElementById('seconds');
 
+  const countdownEl = document.querySelectorAll('.countdown-el p');
+
   const newDay = '5 Oct 2024';
   const envelope = document.querySelector('.envelope-wrapper');
   const main = document.querySelector('.main');
@@ -11,12 +13,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const contentMainP = document.querySelector('.content-main p');
 
   let clickCount = 0;
+  let countdownInterval;
 
   function countdown() {
     const newDayDate = new Date(newDay);
     const currentDate = new Date();
 
-    const totalSeconds = (newDayDate - currentDate) / 1000;
+    let totalSeconds = (newDayDate - currentDate) / 1000;
+
+    if (totalSeconds <= 0) {
+      totalSeconds = 0;
+      clearInterval(countdownInterval);
+      countdownEl.forEach(item => {
+        item.classList.add('active');
+      });
+    }
 
     const days = Math.floor(totalSeconds / 3600 / 24);
     const hours = Math.floor(totalSeconds / 3600) % 24;
@@ -73,6 +84,5 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   countdown();
-
-  setInterval(countdown, 1000);
+  countdownInterval = setInterval(countdown, 1000);
 });
